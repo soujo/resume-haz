@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import styles from "./Body.module.css"
 import Editor from "../Editor/Editor";
 import Button from 'react-bootstrap/Button';
@@ -16,7 +16,50 @@ function Body (){
         POR : "Position Of Reponsibility",
         others : "Interest and Hobbies"
     }
-    
+
+    const [resumeInformation, setResumeInformation] = useState({
+        [sections.basicInfo]: {
+          id: sections.basicInfo,
+          title: sections.basicInfo,
+          detail: {},
+        },
+        [sections.education]: {
+          id: sections.education,
+          title: sections.education,
+          details: [{title : "hello"}],
+        },
+        [sections.skills]: {
+          id: sections.skills,
+          title: sections.skills,
+          points: [],
+        },
+        [sections.achievements]: {
+          id: sections.achievements,
+          title: sections.achievements,
+          points: [],
+        },
+        [sections.workExp]: {
+          id: sections.workExp,
+          title: sections.workExp,
+          details: [{title : "hello"}],
+        },
+        [sections.projects]: {
+          id: sections.projects,
+          title: sections.projects,
+          details: [{title : "hello"}],
+        },
+        [sections.POR]: {
+          id: sections.POR,
+          title: sections.POR,
+          details: [],
+        },
+        [sections.others]: {
+          id: sections.others,
+          title: sections.others,
+          detail: "",
+        },
+      });
+
     return (
         <div className={styles.bodySection}>
             <div className={styles.bodyHeader}>
@@ -30,6 +73,7 @@ function Body (){
             <div className={styles.editorBox}>
                 <Editor
                     sections={sections}
+                    information ={resumeInformation}
                 />
             </div>
             <div className={styles.ResumeBox}>
