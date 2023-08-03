@@ -1,18 +1,18 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
 
-.headerItems{
+.headerItems {
     padding: 10px;
     gap: 10px;
     display: flex;
     justify-content: space-evenly;
 }
 
-.headerItem{
+.headerItem {
     /* border: 2px solid black; */
     padding: 10px;
     border-bottom: 2px solid transparent;
@@ -22,6 +22,26 @@
     cursor: pointer;
 }
 
-.headerItems .activeItem{
+.headerItems .activeItem {
     border-bottom: 2px solid #3b87f8;
 }
+
+.contentBox {
+    min-height: 520px;
+    padding: 50px;
+    text-align: left;
+}
+
+.contentBox .saveBtn {
+    margin: 10px 40px;
+}
+
+.addOns {
+    width: max-content;
+    margin-left: 30px;
+}
+
+.addOns .addOnsBtn {
+    margin: 10px ;
+}
+
