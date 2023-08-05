@@ -19,8 +19,8 @@ const EducationBody = ({ inputDataValues, onChange, handleSectionChange }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         onChange(name, value);
-        console.log(name,value)
-        handleSectionChange("Basic Information", inputDataValues);
+        // console.log(name,value)
+        handleSectionChange("Education", inputDataValues);
     };
 
 

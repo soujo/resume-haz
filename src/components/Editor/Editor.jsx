@@ -46,7 +46,7 @@ function Editor(props) {
             ...prevData,
             [fieldName]: value,
         }));
-        console.log("resumeInformation:",resumeInformation)
+        // console.log("resumeInformation:",resumeInformation)
     };
 
     const handleChangeFunctions = {
@@ -56,10 +56,11 @@ function Editor(props) {
 
     const handleSectionChange = (sectionKey, updatedSection) => {
         setResumeInformation((prevResumeInformation) => ({
-          ...prevResumeInformation,
-          [sectionKey]: updatedSection,
+            ...prevResumeInformation,
+            [sectionKey]: updatedSection,
         }));
-      };
+        console.log("updated section : ",updatedSection)
+    };
 
     const handleComponentSubmission = () => {
         console.log(inputDataValues)
@@ -68,9 +69,9 @@ function Editor(props) {
     const generateSectionBody = () => {
         switch (Object.keys(sections)[activeHeaderItemKey]) {
             case Object.keys(sections)[0]:
-                return <BasicInfoBody inputDataValues={inputDataValues} onChange={handleInputChange} handleSectionChange={handleSectionChange}/>;
+                return <BasicInfoBody inputDataValues={inputDataValues} onChange={handleInputChange} handleSectionChange={handleSectionChange} />;
             case Object.keys(sections)[1]:
-                return <EducationBody inputDataValues={inputDataValues} onChange={handleInputChange} handleSectionChange={handleSectionChange}/>;
+                return <EducationBody inputDataValues={inputDataValues} onChange={handleInputChange} handleSectionChange={handleSectionChange} />;
             case Object.keys(sections)[2]:
                 return <SkillsBody inputDataValues={inputDataValues} onChange={handleChangeFunctions} />;
             case Object.keys(sections)[3]:
@@ -96,29 +97,28 @@ function Editor(props) {
 
         setInputDataValues({
             //BasicInfo
-            title: activeInfo?.details
-                ? activeInfo?.title || ""
+            title: activeInfo["details"]
+                ? activeInfo["details"][0]?.title || ""
                 : activeInfo?.title || ""
+            // title: activeInfo.title
             ,
-            name: activeInfo?.detail?.name || ""
+            name: activeInfo?.name || ""
             ,
-            email: activeInfo?.detail?.email || ""
+            email: activeInfo?.email || ""
             ,
-            phone: activeInfo?.detail?.phone || ""
+            phone: activeInfo?.phone || ""
             ,
-            location: activeInfo?.details
-                ? activeInfo.details[0]?.location || ""
-                : ""
+            location: activeInfo?.location || ""
             ,
             github: activeInfo?.details
                 ? activeInfo.details[0]?.github || ""
-                : activeInfo?.detail?.github || ""
+                : activeInfo?.github || ""
             ,
-            linkedin: activeInfo?.detail?.linkedin || ""
+            linkedin: activeInfo?.linkedin || ""
             ,
-            objective: activeInfo?.detail?.objective || ""
+            objective: activeInfo?.objective || ""
             ,
-            portfolio: activeInfo?.detail?.portfolio || ""
+            portfolio: activeInfo?.portfolio || ""
             ,
             //Education
             courseName: activeInfo?.details
@@ -198,7 +198,12 @@ function Editor(props) {
                 ? activeInfo?.detail
                 : "",
         })
+        // console.log(inputDataValues)
+        // console.log(activeInformation)
+        // console.log("activeinfo", activeInformation.title)
+        // console.log("key",resumeInformation[Object.keys(resumeInformation)[activeHeaderItemKey]])
     }, [activeHeaderItemKey])
+
 
     return (
         <>
