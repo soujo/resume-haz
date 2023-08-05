@@ -16,22 +16,24 @@ function Editor(props) {
 
     const { sections, resumeInformation, setResumeInformation } = props;
 
-    const [activeHeaderItemKey, setactiveHeaderItemKey] = useState(0)
+    const [activeSectionObjectKey, setactiveSectionObjectKey] = useState(Object.keys(sections)[0])
 
     const [activeInformation, setActiveInformation] = useState(
-        resumeInformation["Basic Information"]
+        resumeInformation[sections[Object.keys(sections)[0]]]
     );
 
+    const [ sectionTitle , setSectionTitle ] = useState(sections[Object.keys(sections)[0]])
+
     const [inputDataValues, setInputDataValues] = useState({
-        title: activeInformation?.title || "",
-        name: activeInformation?.name || "",
-        email: activeInformation?.email || "",
-        phone: activeInformation?.phone || "",
-        location: activeInformation?.location || "",
-        github: activeInformation?.github || "",
-        linkedin: activeInformation?.linkedin || "",
-        objective: activeInformation?.objective || "",
-        portfolio: activeInformation?.portfolio || "",
+        title: activeInformation?.detail?.title || "",
+        name: activeInformation?.detail?.name || "",
+        email: activeInformation?.detail?.email || "",
+        phone: activeInformation?.detail?.phone || "",
+        location: activeInformation?.detail?.location || "",
+        github: activeInformation?.detail?.github || "",
+        linkedin: activeInformation?.detail?.linkedin || "",
+        objective: activeInformation?.detail?.objective || "",
+        portfolio: activeInformation?.detail?.portfolio || "",
     });
 
     const handlePointUpdate = (value, index) => {
@@ -46,6 +48,7 @@ function Editor(props) {
             ...prevData,
             [fieldName]: value,
         }));
+        console.log(inputDataValues)
         // console.log("resumeInformation:",resumeInformation)
     };
 
@@ -54,36 +57,39 @@ function Editor(props) {
         handlePointUpdate,
     };
 
-    const handleSectionChange = (sectionKey, updatedSection) => {
-        setResumeInformation((prevResumeInformation) => ({
-            ...prevResumeInformation,
-            [sectionKey]: updatedSection,
-        }));
-        console.log("updated section : ",updatedSection)
-    };
+    // const handleSectionChange = (sectionKey, updatedSection) => {
+    //     setResumeInformation((prevResumeInformation) => ({
+    //         ...prevResumeInformation,
+    //         [sectionKey]: updatedSection,
+    //     }));
+    // };
 
     const handleComponentSubmission = () => {
         console.log(inputDataValues)
     }
 
     const generateSectionBody = () => {
-        switch (Object.keys(sections)[activeHeaderItemKey]) {
-            case Object.keys(sections)[0]:
-                return <BasicInfoBody inputDataValues={inputDataValues} onChange={handleInputChange} handleSectionChange={handleSectionChange} />;
-            case Object.keys(sections)[1]:
-                return <EducationBody inputDataValues={inputDataValues} onChange={handleInputChange} handleSectionChange={handleSectionChange} />;
-            case Object.keys(sections)[2]:
-                return <SkillsBody inputDataValues={inputDataValues} onChange={handleChangeFunctions} />;
-            case Object.keys(sections)[3]:
-                return <AchievementsBody inputDataValues={inputDataValues} onChange={handleChangeFunctions} />;
-            case Object.keys(sections)[4]:
-                return <WorkExperienceBody inputDataValues={inputDataValues} onChange={handleChangeFunctions} />;
-            case Object.keys(sections)[5]:
-                return <ProjectsBody inputDataValues={inputDataValues} onChange={handleInputChange} />;
-            case Object.keys(sections)[6]:
-                return <PORBody inputDataValues={inputDataValues} onChange={handleInputChange} />;
-            case Object.keys(sections)[7]:
-                return <OthersBody inputDataValues={inputDataValues} onChange={handleInputChange} />;
+        switch (sections[activeSectionObjectKey]) {
+            case sections.basicInfo:
+                return <BasicInfoBody 
+                sectionTitle={sectionTitle} 
+                handleInputChange={handleInputChange} 
+                inputDataValues={inputDataValues}
+                />;
+            case sections.education:
+                return <EducationBody sectionTitle={sectionTitle} inputDataValues={inputDataValues} handleInputChange={handleInputChange}/>;
+            case sections.skills:
+                return <SkillsBody sectionTitle={sectionTitle} inputDataValues={inputDataValues} handleChangeFunctions={handleChangeFunctions}/>;
+            // case Object.keys(sections)[3]:
+            //     return <AchievementsBody inputDataValues={inputDataValues} onChange={handleChangeFunctions} />;
+            // case Object.keys(sections)[4]:
+            //     return <WorkExperienceBody inputDataValues={inputDataValues} onChange={handleChangeFunctions} />;
+            // case Object.keys(sections)[5]:
+            //     return <ProjectsBody inputDataValues={inputDataValues} onChange={handleInputChange} />;
+            // case Object.keys(sections)[6]:
+            //     return <PORBody inputDataValues={inputDataValues} onChange={handleInputChange} />;
+            case sections.others:
+                return <OthersBody sectionTitle={sectionTitle} inputDataValues={inputDataValues} handleInputChange={handleInputChange}/>;
             default:
                 return null;
         }
@@ -91,35 +97,35 @@ function Editor(props) {
 
     useEffect(() => {
 
-        const activeInfo = resumeInformation[Object.values(sections)[activeHeaderItemKey]]
-
-        setActiveInformation(activeInfo)
+    const activeInfo = resumeInformation[sections[activeSectionObjectKey]]
+    setActiveInformation(activeInfo)
+    setSectionTitle(sections[activeSectionObjectKey])
+    console.log(sections[activeSectionObjectKey])
 
         setInputDataValues({
             //BasicInfo
-            title: activeInfo["details"]
-                ? activeInfo["details"][0]?.title || ""
-                : activeInfo?.title || ""
-            // title: activeInfo.title
+            title: activeInfo?.details
+                ? activeInfo.details[0]?.title || ""
+                : activeInfo?.detail?.title || ""
             ,
-            name: activeInfo?.name || ""
+            name: activeInfo?.detail?.name || ""
             ,
-            email: activeInfo?.email || ""
+            email: activeInfo?.detail?.email || ""
             ,
-            phone: activeInfo?.phone || ""
-            ,
-            location: activeInfo?.location || ""
-            ,
-            github: activeInfo?.details
-                ? activeInfo.details[0]?.github || ""
-                : activeInfo?.github || ""
-            ,
-            linkedin: activeInfo?.linkedin || ""
-            ,
-            objective: activeInfo?.objective || ""
-            ,
-            portfolio: activeInfo?.portfolio || ""
-            ,
+            // phone: activeInfo?.detail?.phone || ""
+            // ,
+            // location: activeInfo?.detail?.location || ""
+            // ,
+            // github: activeInfo?.details
+            //     ? activeInfo.details[0]?.github || ""
+            //     : activeInfo?.detail?.github || ""
+            // ,
+            // linkedin: activeInfo?.detail?.linkedin || ""
+            // ,
+            // objective: activeInfo?.detail?.objective || ""
+            // ,
+            // portfolio: activeInfo?.detail?.portfolio || ""
+            // ,
             //Education
             courseName: activeInfo?.details
                 ? activeInfo.details[0]?.courseName || ""
@@ -129,22 +135,22 @@ function Editor(props) {
                 ? activeInfo.details[0]?.specialization || ""
                 : ""
             ,
-            collegeName: activeInfo?.details
-                ? activeInfo.details[0]?.collegeName || ""
-                : ""
-            ,
-            cgpa: activeInfo?.details
-                ? activeInfo.details[0]?.cgpa || ""
-                : ""
-            ,
-            startDate: activeInfo?.details
-                ? activeInfo.details[0]?.startDate || ""
-                : ""
-            ,
-            endDate: activeInfo?.details
-                ? activeInfo.details[0]?.endDate || ""
-                : ""
-            ,
+            // collegeName: activeInfo?.details
+            //     ? activeInfo.details[0]?.collegeName || ""
+            //     : ""
+            // ,
+            // cgpa: activeInfo?.details
+            //     ? activeInfo.details[0]?.cgpa || ""
+            //     : ""
+            // ,
+            // startDate: activeInfo?.details
+            //     ? activeInfo.details[0]?.startDate || ""
+            //     : ""
+            // ,
+            // endDate: activeInfo?.details
+            //     ? activeInfo.details[0]?.endDate || ""
+            //     : ""
+            // ,
             //Skills Achievements
             points: activeInfo?.details
                 ? activeInfo.details[0]?.points
@@ -155,72 +161,69 @@ function Editor(props) {
                     : ""
             ,
             //Work Experience
-            roleName: activeInfo?.details
-                ? activeInfo.details[0]?.roleName || ""
-                : ""
-            ,
-            companyName: activeInfo?.details
-                ? activeInfo.details[0]?.companyName || ""
-                : ""
-            ,
-            state: activeInfo?.details
-                ? activeInfo.details[0]?.state || ""
-                : ""
-            ,
-            country: activeInfo?.details
-                ? activeInfo.details[0]?.country || ""
-                : ""
-            ,
+            // roleName: activeInfo?.details
+            //     ? activeInfo.details[0]?.roleName || ""
+            //     : ""
+            // ,
+            // companyName: activeInfo?.details
+            //     ? activeInfo.details[0]?.companyName || ""
+            //     : ""
+            // ,
+            // state: activeInfo?.details
+            //     ? activeInfo.details[0]?.state || ""
+            //     : ""
+            // ,
+            // country: activeInfo?.details
+            //     ? activeInfo.details[0]?.country || ""
+            //     : ""
+            // ,
             //Projects
-            projectName: activeInfo?.details
-                ? activeInfo.details[0]?.projectName || ""
-                : ""
-            ,
-            projectDesp: activeInfo?.details
-                ? activeInfo.details[0]?.projectDesp || ""
-                : ""
-            ,
-            preview: activeInfo?.details
-                ? activeInfo.details[0]?.preview || ""
-                : ""
-            ,
+            // projectName: activeInfo?.details
+            //     ? activeInfo.details[0]?.projectName || ""
+            //     : ""
+            // ,
+            // projectDesp: activeInfo?.details
+            //     ? activeInfo.details[0]?.projectDesp || ""
+            //     : ""
+            // ,
+            // preview: activeInfo?.details
+            //     ? activeInfo.details[0]?.preview || ""
+            //     : ""
+            // ,
             //POR
-            positionName: activeInfo?.details
-                ? activeInfo.details[0]?.positionName || ""
-                : ""
-            ,
-            responsibilities: activeInfo?.details
-                ? activeInfo.details[0]?.responsibilities || ""
-                : ""
-            ,
+            // positionName: activeInfo?.details
+            //     ? activeInfo.details[0]?.positionName || ""
+            //     : ""
+            // ,
+            // responsibilities: activeInfo?.details
+            //     ? activeInfo.details[0]?.responsibilities || ""
+            //     : ""
+            // ,
             //others
             other: typeof (activeInfo?.detail) !== "object"
                 ? activeInfo?.detail
                 : "",
         })
-        // console.log(inputDataValues)
-        // console.log(activeInformation)
-        // console.log("activeinfo", activeInformation.title)
-        // console.log("key",resumeInformation[Object.keys(resumeInformation)[activeHeaderItemKey]])
-    }, [activeHeaderItemKey])
+
+    }, [activeSectionObjectKey])
 
 
     return (
         <>
             <div className={styles.headerBox}>
                 <div className={styles.headerItems}>
-                    {Object.values(sections).map((value, index) => (
+                    {Object.keys(sections)?.map((key) => (
                         <div
                             className={
                                 `${styles.headerItem}
-                                ${activeHeaderItemKey === index ? styles.activeItem : ""
+                                ${activeSectionObjectKey === key ? styles.activeItem : ""
                                 }
                                 `
                             }
-                            key={index}
-                            onClick={() => { setactiveHeaderItemKey(index) }}
+                            key={key}
+                            onClick={() => { setactiveSectionObjectKey(key) }}
                         >
-                            {value}
+                            {sections[key]}
                         </div>
                     ))}
                 </div>
@@ -233,7 +236,7 @@ function Editor(props) {
                         activeInformation?.details
                             ?
                             activeInformation?.details?.map((item, index) => (
-                                <Button className={styles.addOnsBtn} key={index} variant="secondary">Add-on {index + 1} <X size={16} /></Button>
+                                <Button className={styles.addOnsBtn} key={item.title + index} variant="secondary">{sections[activeSectionObjectKey]} {index + 1} <X size={16} /></Button>
                             ))
                             : ""
                     }

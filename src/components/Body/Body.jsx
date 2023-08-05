@@ -21,43 +21,43 @@ function Body() {
   const [resumeInformation, setResumeInformation] = useState({
     [sections.basicInfo]: {
       id: sections.basicInfo,
-      title: sections.basicInfo,
+      sectionTitle: sections.basicInfo,
       detail: {},
     },
     [sections.education]: {
       id: sections.education,
-      title: sections.education,
+      sectionTitle: sections.education,
       details: [],
     },
     [sections.skills]: {
       id: sections.skills,
-      title: sections.skills,
+      sectionTitle: sections.skills,
       points: [],
     },
     [sections.achievements]: {
       id: sections.achievements,
-      title: sections.achievements,
+      sectionTitle: sections.achievements,
       points: [],
     },
     [sections.workExp]: {
       id: sections.workExp,
-      title: sections.workExp,
+      sectionTitle: sections.workExp,
       details: [],
     },
     [sections.projects]: {
       id: sections.projects,
-      title: sections.projects,
+      sectionTitle: sections.projects,
       details: [],
     },
     [sections.POR]: {
       id: sections.POR,
-      title: sections.POR,
+      sectionTitle: sections.POR,
       details: [],
     },
     [sections.others]: {
       id: sections.others,
-      title: sections.others,
-      detail: {},
+      sectionTitle: sections.others,
+      detail: "",
     },
   });
 

@@ -2,7 +2,7 @@ import React from 'react'
 import Form from 'react-bootstrap/Form';
 import styles from './Others.module.css'
 
-const OthersBody = ({ inputDataValues, onChange }) => {
+const OthersBody = ({ sectionTitle, inputDataValues, handleInputChange }) => {
 
     const {
 
@@ -11,9 +11,9 @@ const OthersBody = ({ inputDataValues, onChange }) => {
 
     } = inputDataValues;
 
-    const handleChange = (e) => {
+    const handleInputChangeHere = (e) => {
         const { name, value } = e.target;
-        onChange(name, value);
+        handleInputChange(name, value);
     };
 
     return (
@@ -21,14 +21,14 @@ const OthersBody = ({ inputDataValues, onChange }) => {
             <div>
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" name='title' placeholder="" value={title} onChange={handleChange} />
+                    <Form.Control type="text" name='title' placeholder="" value={title} onChange={handleInputChangeHere}/>
                 </Form.Group>
             </div>
             <div className={styles.col}>
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Summary</Form.Label>
-                        <Form.Control type="text" name='other' placeholder="Eg. Painting, Reading" value={other} onChange={handleChange} />
+                        <Form.Control type="text" name='other' placeholder="Eg. Painting, Reading" value={other}  onChange={handleInputChangeHere}/>
                     </Form.Group>
 
                 </div>

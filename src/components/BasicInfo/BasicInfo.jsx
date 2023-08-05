@@ -2,8 +2,7 @@ import React from 'react'
 import Form from 'react-bootstrap/Form';
 import styles from './BasicInfo.module.css'
 
-const BasicInfoBody = ({ inputDataValues, onChange, handleSectionChange }) => {
-
+const BasicInfoBody = ({ sectionTitle, inputDataValues, handleInputChange, handleSectionChange }) => {
     const { 
         
         title, 
@@ -18,12 +17,12 @@ const BasicInfoBody = ({ inputDataValues, onChange, handleSectionChange }) => {
 
     } = inputDataValues;
 
-    const handleChange = (e) => {
+    console.log({title,name,email})
+
+    const handleInputChangeHere = (e) => {
         const { name, value } = e.target;
-        onChange(name, value);
-        // console.log(name,value)
-        handleSectionChange("Basic Information", inputDataValues);
-        // console.log(inputDataValues)
+        handleInputChange(name, value);
+        // handleSectionChange("Basic Information", inputDataValues);
     };
 
     
@@ -33,26 +32,26 @@ const BasicInfoBody = ({ inputDataValues, onChange, handleSectionChange }) => {
             <div>
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" name='title' placeholder="" value={title} onChange={handleChange} />
+                    <Form.Control type="text" name='title' placeholder="" value={title} onChange={handleInputChangeHere}/>
                 </Form.Group>
             </div>
             <div className={styles.col}>
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Full Name</Form.Label>
-                        <Form.Control type="text" name='name' placeholder="Eg. John Doe" value={name} onChange={handleChange}/>
+                        <Form.Control type="text" name='name' placeholder="Eg. John Doe" value={name} onChange={handleInputChangeHere}/>
                     </Form.Group>
 
                 </div>
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" name='email' placeholder="Eg. example@abc.com" value={email} onChange={handleChange}/>
+                        <Form.Control type="email" name='email' placeholder="Eg. example@abc.com" value={email} onChange={handleInputChangeHere}/>
                     </Form.Group>
 
                 </div>
             </div>
-            <div className={styles.col}>
+            {/* <div className={styles.col}>
 
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
@@ -99,7 +98,7 @@ const BasicInfoBody = ({ inputDataValues, onChange, handleSectionChange }) => {
                     </Form.Group>
 
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
