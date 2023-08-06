@@ -1,31 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import styles from "./Editor.module.css"
+import Form from 'react-bootstrap/Form';
 import { X } from 'react-feather';
 
-import BasicInfoBody from "../BasicInfo/BasicInfo";
-import EducationBody from "../Education/Education";
-import SkillsBody from "../Skills/Skills";
-import AchievementsBody from "../Achievements/Achievements";
-import WorkExperienceBody from "../WorkExperience/WorkExperience";
-import ProjectsBody from "../Projects/Projects";
-import PORBody from "../POR/POR";
-import OthersBody from "../Others/Others";
 
 function Editor(props) {
 
     const { sections, resumeInformation, setResumeInformation } = props;
 
+    //* States
     const [activeSectionObjectKey, setactiveSectionObjectKey] = useState(Object.keys(sections)[0])
 
     const [activeInformation, setActiveInformation] = useState(
         resumeInformation[sections[Object.keys(sections)[0]]]
     );
 
-    const [ sectionTitle , setSectionTitle ] = useState(sections[Object.keys(sections)[0]])
+    const [sectionTitle, setSectionTitle] = useState(sections[Object.keys(sections)[0]])
 
     const [inputDataValues, setInputDataValues] = useState({
-        title: activeInformation?.detail?.title || "",
         name: activeInformation?.detail?.name || "",
         email: activeInformation?.detail?.email || "",
         phone: activeInformation?.detail?.phone || "",
@@ -33,9 +26,558 @@ function Editor(props) {
         github: activeInformation?.detail?.github || "",
         linkedin: activeInformation?.detail?.linkedin || "",
         objective: activeInformation?.detail?.objective || "",
-        portfolio: activeInformation?.detail?.portfolio || "",
+        portfolio: activeInformation?.detail?.portfolio || ""
     });
 
+    const [activeAddOnDetailIndex, setactiveAddOnDetailIndex] = useState(0)
+
+    //* Section Body 
+    const BasicInfoBody = (
+        <div className={styles.container}>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" name='title' placeholder=""
+                        value={sectionTitle}
+                        onChange={(event) => setSectionTitle(event.target.value)} />
+                </Form.Group>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Full Name</Form.Label>
+                        <Form.Control type="text" name='name' placeholder="Eg. John Doe"
+                            value={inputDataValues.name}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, name: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="email" name='email' placeholder="Eg. example@abc.com"
+                            value={inputDataValues.email}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, email: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Control type="text" name='phone' placeholder="Eg. 1234567890"
+                            value={inputDataValues.phone}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, phone: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Location</Form.Label>
+                        <Form.Control type="text" name='location' placeholder="Eg Kolkata, India"
+                            value={inputDataValues.location}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, location: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>GitHub Link</Form.Label>
+                        <Form.Control type="text" name='github' placeholder="Enter your GitHub profile link"
+                            value={inputDataValues.github}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, github: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>LinkedIn Link </Form.Label>
+                        <Form.Control type="text" name='linkedin' placeholder="Enter your LinkedIn profile link"
+                            value={inputDataValues.linkedin}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, linkedin: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Objective</Form.Label>
+                        <Form.Control as="textarea" name='objective' placeholder='Write a short summary of yourself'
+                            value={inputDataValues.objective}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, objective: event.target.value }))
+                            } />
+                    </Form.Group>
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Portfolio Link </Form.Label>
+                        <Form.Control type="text" name='portfolio' placeholder="Enter your Portfolio link"
+                            value={inputDataValues.portfolio}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, portfolio: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+        </div>
+    )
+
+    const EducationBody = (
+        <div className={styles.container}>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" name='title' placeholder=""
+                        value={sectionTitle}
+                        onChange={(event) => setSectionTitle(event.target.value)} />
+                </Form.Group>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Course Name and Subject</Form.Label>
+                        <Form.Control type="text" name='courseName' placeholder="Eg. B.Tech in Computer Science and Engineering"
+                            value={inputDataValues.courseName}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, courseName: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Specialization</Form.Label>
+                        <Form.Control type="text" name='specialization' placeholder="Eg. Machine Learning"
+                            value={inputDataValues.specialization}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, specialization: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>College/School Name</Form.Label>
+                        <Form.Control type="text" name='collegeName' placeholder="Eg. ABC College/School"
+                            value={inputDataValues.collegeName}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, collegeName: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>CGPA</Form.Label>
+                        <Form.Control type="text" name='cgpa' placeholder="Eg 7.5"
+                            value={inputDataValues.cgpa}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, cgpa: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Course Starting Date</Form.Label>
+                        <Form.Control type="date" name='startDate' placeholder=""
+                            value={inputDataValues.startDate}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, startDate: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Course Ending Date</Form.Label>
+                        <Form.Control type="date" name='endDate' placeholder=""
+                            value={inputDataValues.endDate}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, endDate: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+        </div>
+    )
+
+    const SkillsBody = (
+        <div className={styles.container}>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" name='title' placeholder=""
+                        value={sectionTitle}
+                        onChange={(event) => setSectionTitle(event.target.value)}
+                    />
+                </Form.Group>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Technical Skills</Form.Label>
+                        <Form.Control type="text" name="0" placeholder="Eg. Nodejs, Reactjs etc"
+                            value={inputDataValues.points ? inputDataValues.points[0] : ''}
+                            onChange={(event) => handlePointUpdate(event.target.value, 0)} />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Soft Skills</Form.Label>
+                        <Form.Control type="text" name='1' placeholder="Eg. Problem Solving, Leadership etc"
+                            value={inputDataValues.points ? inputDataValues.points[1] : ""}
+                            onChange={(event) => handlePointUpdate(event.target.value, 1)} />
+                    </Form.Group>
+
+                </div>
+
+            </div>
+        </div>
+    )
+
+    const AchievementsBody = (
+        <div className={styles.container}>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" name='title' placeholder=""
+                        value={sectionTitle}
+                        onChange={(event) => setSectionTitle(event.target.value)} />
+                </Form.Group>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Achievements</Form.Label>
+                        <Form.Control type="text" name='0' placeholder="Enter your first achievement"
+                            value={inputDataValues.points ? inputDataValues.points[0] : ""}
+                            onChange={(event) => handlePointUpdate(event.target.value, 0)} />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Control type="text" name='1' placeholder="Enter your second achievement"
+                            value={inputDataValues.points ? inputDataValues.points[1] : ""}
+                            onChange={(event) => handlePointUpdate(event.target.value, 1)} />
+                    </Form.Group>
+
+                </div>
+
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Control type="text" name='2' placeholder="Enter your third achievement"
+                            value={inputDataValues.points ? inputDataValues.points[2] : ""}
+                            onChange={(event) => handlePointUpdate(event.target.value, 2)} />
+                    </Form.Group>
+
+                </div>
+
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Control type="text" name='3' placeholder="Enter your fourth achievement"
+                            value={inputDataValues.points ? inputDataValues.points[3] : ""}
+                            onChange={(event) => handlePointUpdate(event.target.value, 3)} />
+                    </Form.Group>
+
+                </div>
+
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Control type="text" name='4' placeholder="Enter your fifth achievement"
+                            value={inputDataValues.points ? inputDataValues.points[4] : ""}
+                            onChange={(event) => handlePointUpdate(event.target.value, 4)} />
+                    </Form.Group>
+
+                </div>
+
+            </div>
+        </div>
+    )
+
+    const WorkExperienceBody = (
+        <div className={styles.container}>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" name='title' placeholder="" value={sectionTitle}
+                        onChange={(event) => setSectionTitle(event.target.value)} />
+                </Form.Group>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Role Name</Form.Label>
+                        <Form.Control type="text" name='roleName' placeholder="Eg. Software Engineer" value={inputDataValues.roleName} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, roleName: event.target.value }))
+                        } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Company Name</Form.Label>
+                        <Form.Control type="text" name='companyName' placeholder="Eg. Atlassian" value={inputDataValues.companyName} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, companyName: event.target.value }))
+                        } />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>State</Form.Label>
+                        <Form.Control type="text" name='state' placeholder="Eg. Bengaluru" value={inputDataValues.state} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, state: event.target.value }))
+                        } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Country</Form.Label>
+                        <Form.Control type="text" name='country' placeholder="Eg. India" value={inputDataValues.country} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, country: event.target.value }))
+                        } />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Joining Date</Form.Label>
+                        <Form.Control type="date" name='startDate' placeholder="" value={inputDataValues.startDate} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, startDate: event.target.value }))
+                        } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Termination Date</Form.Label>
+                        <Form.Control type="date" name='endDate' placeholder="" value={inputDataValues.endDate} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, endDate: event.target.value }))
+                        } />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Summary</Form.Label>
+                        <Form.Control type="text" name='workExpSum1' placeholder="Eg. Achieved X% growth for XYZ using A, B, and C skills"
+                            value={inputDataValues.workExpSum1}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, workExpSum1: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Control type="text" name='workExpSum2' placeholder="Eg. Developed XYZ that did A, B, and C using X, Y, and Z."
+                            value={inputDataValues.workExpSum2}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, workExpSum2: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+
+            </div>
+            <div className={styles.col}>
+
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Control type="text" name='workExpSum3' placeholder="Eg. Led XYZ which led to X% of improvement in ABC "
+                            value={inputDataValues.workExpSum3}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, workExpSum3: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+
+            </div>
+        </div>
+    )
+
+    const ProjectBody = (
+        <div className={styles.container}>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" name='title' placeholder=""
+                        value={sectionTitle}
+                        onChange={(event) => setSectionTitle(event.target.value)} />
+                </Form.Group>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Project Name</Form.Label>
+                        <Form.Control type="text" name='projectName' placeholder="Eg xyz"
+                            value={inputDataValues.projectName}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, projectName: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Project Description</Form.Label>
+                    <Form.Control type="text" name='projectDesp' placeholder="Eg. Build a project that does something and had quantified success using A, B, and C. "
+                        value={inputDataValues.projectDesp}
+                        onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, projectDesp: event.target.value }))
+                        } />
+                </Form.Group>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>GitHub Links</Form.Label>
+                        <Form.Control type="text" name='github' placeholder="Enter your github repo link"
+                            value={inputDataValues.github}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, github: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Preview Link</Form.Label>
+                        <Form.Control type="text" name='preview' placeholder="Enter your hosted website/app link"
+                            value={inputDataValues.preview}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, preview: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+        </div>
+    )
+
+    const PORBody = (
+        <div className={styles.container}>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" name='title' placeholder="" value={sectionTitle}
+                        onChange={(event) => setSectionTitle(event.target.value)} />
+                </Form.Group>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Position Name and Role</Form.Label>
+                        <Form.Control type="text" name='positionName' placeholder="Eg abc at xyz community"
+                            value={inputDataValues.positionName}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, positionName: event.target.value }))
+                            }
+                        />
+                    </Form.Group>
+
+                </div>
+            </div>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Responsibilities you managed </Form.Label>
+                    <Form.Control type="text" name='responsibilities' placeholder="Eg. Actively involved in facilitating online events, and more alongside other admins and a team of volunteer moderators!"
+                        value={inputDataValues.responsibilities}
+                        onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, responsibilities: event.target.value }))
+                        }
+                    />
+                </Form.Group>
+            </div>
+        </div>
+    )
+
+    const OthersBody = (
+        <div className={styles.container}>
+            <div>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" name='title' placeholder=""
+                        value={sectionTitle}
+                        onChange={(event) => setSectionTitle(event.target.value)} />
+                </Form.Group>
+            </div>
+            <div className={styles.col}>
+                <div className={styles.colDiv}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>Summary</Form.Label>
+                        <Form.Control type="text" name='other' placeholder="Eg. Painting, Reading"
+                            value={inputDataValues.other}
+                            onChange={(event) =>
+                                setInputDataValues((prev) => ({ ...prev, other: event.target.value }))
+                            } />
+                    </Form.Group>
+
+                </div>
+            </div>
+
+        </div>
+    )
+
+    //* Helper Functions
     const handlePointUpdate = (value, index) => {
         const tempInputDataValues = { ...inputDataValues };
         if (!Array.isArray(tempInputDataValues.points)) tempInputDataValues.points = [];
@@ -43,89 +585,222 @@ function Editor(props) {
         setInputDataValues(tempInputDataValues);
     };
 
-    const handleInputChange = (fieldName, value) => {
-        setInputDataValues((prevData) => ({
-            ...prevData,
-            [fieldName]: value,
-        }));
-        console.log(inputDataValues)
-        // console.log("resumeInformation:",resumeInformation)
-    };
-
-    const handleChangeFunctions = {
-        handleInputChange,
-        handlePointUpdate,
-    };
-
-    // const handleSectionChange = (sectionKey, updatedSection) => {
-    //     setResumeInformation((prevResumeInformation) => ({
-    //         ...prevResumeInformation,
-    //         [sectionKey]: updatedSection,
-    //     }));
-    // };
-
-    const handleComponentSubmission = () => {
-        console.log(inputDataValues)
-    }
 
     const generateSectionBody = () => {
         switch (sections[activeSectionObjectKey]) {
             case sections.basicInfo:
-                return <BasicInfoBody 
-                sectionTitle={sectionTitle} 
-                handleInputChange={handleInputChange} 
-                inputDataValues={inputDataValues}
-                />;
+                return BasicInfoBody;
             case sections.education:
-                return <EducationBody sectionTitle={sectionTitle} inputDataValues={inputDataValues} handleInputChange={handleInputChange}/>;
+                return EducationBody;
             case sections.skills:
-                return <SkillsBody sectionTitle={sectionTitle} inputDataValues={inputDataValues} handleChangeFunctions={handleChangeFunctions}/>;
-            // case Object.keys(sections)[3]:
-            //     return <AchievementsBody inputDataValues={inputDataValues} onChange={handleChangeFunctions} />;
-            // case Object.keys(sections)[4]:
-            //     return <WorkExperienceBody inputDataValues={inputDataValues} onChange={handleChangeFunctions} />;
-            // case Object.keys(sections)[5]:
-            //     return <ProjectsBody inputDataValues={inputDataValues} onChange={handleInputChange} />;
-            // case Object.keys(sections)[6]:
-            //     return <PORBody inputDataValues={inputDataValues} onChange={handleInputChange} />;
+                return SkillsBody;
+            case sections.achievements:
+                return AchievementsBody;
+            case sections.workExp:
+                return WorkExperienceBody;
+            case sections.projects:
+                return ProjectBody;
+            case sections.POR:
+                return PORBody;
             case sections.others:
-                return <OthersBody sectionTitle={sectionTitle} inputDataValues={inputDataValues} handleInputChange={handleInputChange}/>;
+                return OthersBody;
             default:
                 return null;
         }
     };
 
+    const handleComponentSubmission = () => {
+        switch (sections[activeSectionObjectKey]) {
+            case sections.basicInfo: {
+                const tempDetail = {
+                    name: inputDataValues.name,
+                    email: inputDataValues.email,
+                    phone: inputDataValues.phone,
+                    location: inputDataValues.location,
+                    github: inputDataValues.github,
+                    linkedin: inputDataValues.linkedin,
+                    objective: inputDataValues.objective,
+                    portfolio: inputDataValues.portfolio,
+                };
+
+                props.setResumeInformation((prev) => ({
+                    ...prev,
+                    [sections.basicInfo]: {
+                        ...prev[sections.basicInfo],
+                        detail: tempDetail,
+                        sectionTitle,
+                    },
+                }));
+                break;
+            }
+            case sections.education: {
+                const tempDetail = {
+                    courseName: inputDataValues.courseName,
+                    specialization: inputDataValues.specialization,
+                    collegeName: inputDataValues.collegeName,
+                    cgpa: inputDataValues.cgpa,
+                    startDate: inputDataValues.startDate,
+                    endDate: inputDataValues.endDate
+                };
+
+                const tempDetails = [...resumeInformation[sections.education]?.details];
+                tempDetails[activeAddOnDetailIndex] = tempDetail;
+
+                props.setResumeInformation((prev) => ({
+                    ...prev,
+                    [sections.education]: {
+                        ...prev[sections.education],
+                        details: tempDetails,
+                        sectionTitle,
+                    },
+                }));
+
+                break;
+            }
+            case sections.skills: {
+                const tempPoints = inputDataValues.points
+
+                props.setResumeInformation((prev) => ({
+                    ...prev,
+                    [sections.skills]: {
+                        ...prev[sections.skills],
+                        points: tempPoints,
+                        sectionTitle,
+                    },
+                }));
+
+                break;
+            }
+            case sections.achievements: {
+                const tempPoints = inputDataValues.points
+
+                props.setResumeInformation((prev) => ({
+                    ...prev,
+                    [sections.achievements]: {
+                        ...prev[sections.achievements],
+                        points: tempPoints,
+                        sectionTitle,
+                    },
+                }));
+
+                break;
+            }
+            case sections.workExp: {
+                const tempDetail = {
+                    roleName: inputDataValues.roleName,
+                    companyName: inputDataValues.companyName,
+                    state: inputDataValues.state,
+                    country: inputDataValues.country,
+                    startDate: inputDataValues.startDate,
+                    endDate: inputDataValues.endDate,
+                    workExpSum1 : inputDataValues.workExpSum1,
+                    workExpSum2 : inputDataValues.workExpSum2,
+                    workExpSum3 : inputDataValues.workExpSum3,
+                };
+
+                const tempDetails = [...resumeInformation[sections.workExp]?.details];
+                tempDetails[activeAddOnDetailIndex] = tempDetail;
+
+                props.setResumeInformation((prev) => ({
+                    ...prev,
+                    [sections.workExp]: {
+                        ...prev[sections.workExp],
+                        details: tempDetails,
+                        sectionTitle,
+                    },
+                }));
+
+                break;
+            }
+            case sections.projects: {
+                const tempDetail = {
+                    projectName: inputDataValues.projectName,
+                    projectDesp: inputDataValues.projectDesp,
+                    github: inputDataValues.github,
+                    preview: inputDataValues.preview
+                };
+
+                const tempDetails = [...resumeInformation[sections.projects]?.details];
+                tempDetails[activeAddOnDetailIndex] = tempDetail;
+
+                props.setResumeInformation((prev) => ({
+                    ...prev,
+                    [sections.projects]: {
+                        ...prev[sections.projects],
+                        details: tempDetails,
+                        sectionTitle,
+                    },
+                }));
+
+                break;
+            }
+            case sections.POR: {
+                const tempDetail = {
+                    positionName: inputDataValues.positionName,
+                    responsibilities: inputDataValues.responsibilities
+                };
+
+                const tempDetails = [...resumeInformation[sections.POR]?.details];
+                tempDetails[activeAddOnDetailIndex] = tempDetail;
+
+                props.setResumeInformation((prev) => ({
+                    ...prev,
+                    [sections.POR]: {
+                        ...prev[sections.POR],
+                        details: tempDetails,
+                        sectionTitle,
+                    },
+                }));
+
+                break;
+            }
+            case sections.others: {
+                const tempDetail = inputDataValues.other;
+
+                props.setResumeInformation((prev) => ({
+                    ...prev,
+                    [sections.others]: {
+                        ...prev[sections.others],
+                        detail: tempDetail,
+                        sectionTitle,
+                    },
+                }));
+                break;
+            }
+            default:
+                break;
+        }
+        console.log("when save",resumeInformation)
+
+    }
+
+    //* Effects
     useEffect(() => {
 
-    const activeInfo = resumeInformation[sections[activeSectionObjectKey]]
-    setActiveInformation(activeInfo)
-    setSectionTitle(sections[activeSectionObjectKey])
-    console.log(sections[activeSectionObjectKey])
+        const activeInfo = resumeInformation[sections[activeSectionObjectKey]]
 
+        setActiveInformation(activeInfo)
+        setSectionTitle(sections[activeSectionObjectKey])
+        setactiveAddOnDetailIndex(0)
         setInputDataValues({
-            //BasicInfo
-            title: activeInfo?.details
-                ? activeInfo.details[0]?.title || ""
-                : activeInfo?.detail?.title || ""
-            ,
             name: activeInfo?.detail?.name || ""
             ,
             email: activeInfo?.detail?.email || ""
             ,
-            // phone: activeInfo?.detail?.phone || ""
-            // ,
-            // location: activeInfo?.detail?.location || ""
-            // ,
-            // github: activeInfo?.details
-            //     ? activeInfo.details[0]?.github || ""
-            //     : activeInfo?.detail?.github || ""
-            // ,
-            // linkedin: activeInfo?.detail?.linkedin || ""
-            // ,
-            // objective: activeInfo?.detail?.objective || ""
-            // ,
-            // portfolio: activeInfo?.detail?.portfolio || ""
-            // ,
+            phone: activeInfo?.detail?.phone || ""
+            ,
+            location: activeInfo?.detail?.location || ""
+            ,
+            github: activeInfo?.details
+                ? activeInfo.details[0]?.github || ""
+                : activeInfo?.detail?.github || ""
+            ,
+            linkedin: activeInfo?.detail?.linkedin || ""
+            ,
+            objective: activeInfo?.detail?.objective || ""
+            ,
+            portfolio: activeInfo?.detail?.portfolio || ""
+            ,
             //Education
             courseName: activeInfo?.details
                 ? activeInfo.details[0]?.courseName || ""
@@ -135,22 +810,22 @@ function Editor(props) {
                 ? activeInfo.details[0]?.specialization || ""
                 : ""
             ,
-            // collegeName: activeInfo?.details
-            //     ? activeInfo.details[0]?.collegeName || ""
-            //     : ""
-            // ,
-            // cgpa: activeInfo?.details
-            //     ? activeInfo.details[0]?.cgpa || ""
-            //     : ""
-            // ,
-            // startDate: activeInfo?.details
-            //     ? activeInfo.details[0]?.startDate || ""
-            //     : ""
-            // ,
-            // endDate: activeInfo?.details
-            //     ? activeInfo.details[0]?.endDate || ""
-            //     : ""
-            // ,
+            collegeName: activeInfo?.details
+                ? activeInfo.details[0]?.collegeName || ""
+                : ""
+            ,
+            cgpa: activeInfo?.details
+                ? activeInfo.details[0]?.cgpa || ""
+                : ""
+            ,
+            startDate: activeInfo?.details
+                ? activeInfo.details[0]?.startDate || ""
+                : ""
+            ,
+            endDate: activeInfo?.details
+                ? activeInfo.details[0]?.endDate || ""
+                : ""
+            ,
             //Skills Achievements
             points: activeInfo?.details
                 ? activeInfo.details[0]?.points
@@ -161,51 +836,72 @@ function Editor(props) {
                     : ""
             ,
             //Work Experience
-            // roleName: activeInfo?.details
-            //     ? activeInfo.details[0]?.roleName || ""
-            //     : ""
-            // ,
-            // companyName: activeInfo?.details
-            //     ? activeInfo.details[0]?.companyName || ""
-            //     : ""
-            // ,
-            // state: activeInfo?.details
-            //     ? activeInfo.details[0]?.state || ""
-            //     : ""
-            // ,
-            // country: activeInfo?.details
-            //     ? activeInfo.details[0]?.country || ""
-            //     : ""
-            // ,
+            roleName: activeInfo?.details
+                ? activeInfo.details[0]?.roleName || ""
+                : ""
+            ,
+            companyName: activeInfo?.details
+                ? activeInfo.details[0]?.companyName || ""
+                : ""
+            ,
+            state: activeInfo?.details
+                ? activeInfo.details[0]?.state || ""
+                : ""
+            ,
+            country: activeInfo?.details
+                ? activeInfo.details[0]?.country || ""
+                : ""
+            ,
+            workExpSum1 : activeInfo?.details
+                ? activeInfo.details[0]?.workExpSum1 || ""
+                : ""
+            ,
+            workExpSum2 : activeInfo?.details
+                ? activeInfo.details[0]?.workExpSum2 || ""
+                : ""
+            ,
+            workExpSum3 : activeInfo?.details
+                ? activeInfo.details[0]?.workExpSum3 || ""
+                : ""
+            ,
             //Projects
-            // projectName: activeInfo?.details
-            //     ? activeInfo.details[0]?.projectName || ""
-            //     : ""
-            // ,
-            // projectDesp: activeInfo?.details
-            //     ? activeInfo.details[0]?.projectDesp || ""
-            //     : ""
-            // ,
-            // preview: activeInfo?.details
-            //     ? activeInfo.details[0]?.preview || ""
-            //     : ""
-            // ,
+            projectName: activeInfo?.details
+                ? activeInfo.details[0]?.projectName || ""
+                : ""
+            ,
+            projectDesp: activeInfo?.details
+                ? activeInfo.details[0]?.projectDesp || ""
+                : ""
+            ,
+            preview: activeInfo?.details
+                ? activeInfo.details[0]?.preview || ""
+                : ""
+            ,
             //POR
-            // positionName: activeInfo?.details
-            //     ? activeInfo.details[0]?.positionName || ""
-            //     : ""
-            // ,
-            // responsibilities: activeInfo?.details
-            //     ? activeInfo.details[0]?.responsibilities || ""
-            //     : ""
-            // ,
+            positionName: activeInfo?.details
+                ? activeInfo.details[0]?.positionName || ""
+                : ""
+            ,
+            responsibilities: activeInfo?.details
+                ? activeInfo.details[0]?.responsibilities || ""
+                : ""
+            ,
             //others
             other: typeof (activeInfo?.detail) !== "object"
                 ? activeInfo?.detail
                 : "",
         })
 
+        console.log(inputDataValues)
+        console.log("when section change",resumeInformation)
+
     }, [activeSectionObjectKey])
+
+    useEffect(() => {
+        setActiveInformation(resumeInformation[sections[activeSectionObjectKey]]);
+    }, [resumeInformation]);
+
+
 
 
     return (
@@ -236,7 +932,25 @@ function Editor(props) {
                         activeInformation?.details
                             ?
                             activeInformation?.details?.map((item, index) => (
-                                <Button className={styles.addOnsBtn} key={item.title + index} variant="secondary">{sections[activeSectionObjectKey]} {index + 1} <X size={16} /></Button>
+                                activeAddOnDetailIndex === index
+                                    ?
+                                    <Button
+                                        className={styles.addOns}
+                                        key={item.title + index}
+
+                                        variant="secondary"
+                                    >
+                                        {sections[activeSectionObjectKey]} {index + 1} <X size={16} />
+                                    </Button>
+                                    :
+                                    <Button
+                                        className={styles.addOns}
+                                        key={item.title + index}
+
+                                        variant="primary"
+                                    >
+                                        {sections[activeSectionObjectKey]} {index + 1} <X size={16} />
+                                    </Button>
                             ))
                             : ""
                     }
