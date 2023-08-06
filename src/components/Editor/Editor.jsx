@@ -585,6 +585,47 @@ function Editor(props) {
         setInputDataValues(tempInputDataValues);
     };
 
+    const handleNewAddDetail = () => {
+        const details = activeInformation?.details
+        const lastDetail = details.slice(-1)[0];
+
+        if (!details)
+            return
+        if (!Object.keys(lastDetail).length)
+            return;
+        details.push({})
+
+        props.setResumeInformation((prev) => ({
+            ...prev,
+            [sections[activeSectionObjectKey]]: {
+                ...resumeInformation[sections[activeSectionObjectKey]],
+                details: details
+            }
+        }))
+
+        setactiveAddOnDetailIndex(details?.length - 1)
+    }
+
+    const handleNewDelDetail = (index) => {
+        const details = activeInformation?.details
+            ? [...activeInformation?.details]
+            : "";
+
+        if (!details)
+            return;
+
+        details.splice(index, 1);
+
+        props.setResumeInformation((prev) => ({
+            ...prev,
+            [sections[activeSectionObjectKey]]: {
+                ...resumeInformation[sections[activeSectionObjectKey]],
+                details: details,
+            },
+        }));
+
+        setactiveAddOnDetailIndex((prev) => (prev === index ? 0 : prev - 1));
+    };
 
     const generateSectionBody = () => {
         switch (sections[activeSectionObjectKey]) {
@@ -693,9 +734,9 @@ function Editor(props) {
                     country: inputDataValues.country,
                     startDate: inputDataValues.startDate,
                     endDate: inputDataValues.endDate,
-                    workExpSum1 : inputDataValues.workExpSum1,
-                    workExpSum2 : inputDataValues.workExpSum2,
-                    workExpSum3 : inputDataValues.workExpSum3,
+                    workExpSum1: inputDataValues.workExpSum1,
+                    workExpSum2: inputDataValues.workExpSum2,
+                    workExpSum3: inputDataValues.workExpSum3,
                 };
 
                 const tempDetails = [...resumeInformation[sections.workExp]?.details];
@@ -770,7 +811,6 @@ function Editor(props) {
             default:
                 break;
         }
-        console.log("when save",resumeInformation)
 
     }
 
@@ -852,15 +892,15 @@ function Editor(props) {
                 ? activeInfo.details[0]?.country || ""
                 : ""
             ,
-            workExpSum1 : activeInfo?.details
+            workExpSum1: activeInfo?.details
                 ? activeInfo.details[0]?.workExpSum1 || ""
                 : ""
             ,
-            workExpSum2 : activeInfo?.details
+            workExpSum2: activeInfo?.details
                 ? activeInfo.details[0]?.workExpSum2 || ""
                 : ""
             ,
-            workExpSum3 : activeInfo?.details
+            workExpSum3: activeInfo?.details
                 ? activeInfo.details[0]?.workExpSum3 || ""
                 : ""
             ,
@@ -892,8 +932,6 @@ function Editor(props) {
                 : "",
         })
 
-        console.log(inputDataValues)
-        console.log("when section change",resumeInformation)
 
     }, [activeSectionObjectKey])
 
@@ -938,21 +976,34 @@ function Editor(props) {
                                         className={styles.addOns}
                                         key={item.title + index}
 
-                                        variant="secondary"
+                                        variant="primary"
                                     >
-                                        {sections[activeSectionObjectKey]} {index + 1} <X size={16} />
+                                        {sections[activeSectionObjectKey]} {index + 1}
+                                        <X
+                                            size={16}
+                                            className={styles.cross}
+                                            onClick={() => { handleNewDelDetail(index) }}
+                                        />
                                     </Button>
                                     :
                                     <Button
                                         className={styles.addOns}
                                         key={item.title + index}
 
-                                        variant="primary"
+                                        variant="secondary"
                                     >
-                                        {sections[activeSectionObjectKey]} {index + 1} <X size={16} />
+                                        {sections[activeSectionObjectKey]} {index + 1} 
+                                        <X size={16} 
+                                        className={styles.cross}
+                                        />
                                     </Button>
                             ))
                             : ""
+                    }
+                    {
+                        activeInformation?.details && activeInformation?.details?.length > 0
+                            ? <Button variant="info" className={styles.addOns} onClick={handleNewAddDetail}>Add</Button>
+                            : ("")
                     }
                 </div>
 
