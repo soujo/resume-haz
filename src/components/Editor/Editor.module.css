@@ -63,3 +63,16 @@
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+
+.cross{
+    margin-left: 4px;
+    margin-bottom: 1px;
+    padding: 1px;
+}
+
+.cross:hover{
+    border-radius: 50%;
+    background-color: #ffa5a5;
+    color: #000;
+    transition: 0.07s ease-in;
+}
