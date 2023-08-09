@@ -204,10 +204,10 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Course Starting Date</Form.Label>
-                        <Form.Control type="date" name='startDate' placeholder=""
-                            value={inputDataValues.startDate}
+                        <Form.Control type="date" name='EduStartDate' placeholder=""
+                            value={inputDataValues.EduStartDate}
                             onChange={(event) =>
-                                setInputDataValues((prev) => ({ ...prev, startDate: event.target.value }))
+                                setInputDataValues((prev) => ({ ...prev, EduStartDate: event.target.value }))
                             } />
                     </Form.Group>
 
@@ -215,10 +215,10 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Course Ending Date</Form.Label>
-                        <Form.Control type="date" name='endDate' placeholder=""
-                            value={inputDataValues.endDate}
+                        <Form.Control type="date" name='EduEndDate' placeholder=""
+                            value={inputDataValues.EduEndDate}
                             onChange={(event) =>
-                                setInputDataValues((prev) => ({ ...prev, endDate: event.target.value }))
+                                setInputDataValues((prev) => ({ ...prev, EduEndDate: event.target.value }))
                             } />
                     </Form.Group>
 
@@ -243,7 +243,7 @@ function Editor(props) {
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Technical Skills</Form.Label>
                         <Form.Control type="text" name="0" placeholder="Eg. Nodejs, Reactjs etc"
-                            value={inputDataValues.points ? inputDataValues.points[0] : ''}
+                            value={inputDataValues.points ? inputDataValues.points[0] : ""}
                             onChange={(event) => handlePointUpdate(event.target.value, 0)} />
                     </Form.Group>
 
@@ -254,7 +254,7 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Soft Skills</Form.Label>
-                        <Form.Control type="text" name='1' placeholder="Eg. Problem Solving, Leadership etc"
+                        <Form.Control type="text" name="1" placeholder="Eg. Problem Solving, Leadership etc"
                             value={inputDataValues.points ? inputDataValues.points[1] : ""}
                             onChange={(event) => handlePointUpdate(event.target.value, 1)} />
                     </Form.Group>
@@ -391,8 +391,8 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Joining Date</Form.Label>
-                        <Form.Control type="date" name='startDate' placeholder="" value={inputDataValues.startDate} onChange={(event) =>
-                            setInputDataValues((prev) => ({ ...prev, startDate: event.target.value }))
+                        <Form.Control type="date" name='WorkExpStartDate' placeholder="" value={inputDataValues.WorkExpStartDate} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, WorkExpStartDate: event.target.value }))
                         } />
                     </Form.Group>
 
@@ -400,8 +400,8 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Termination Date</Form.Label>
-                        <Form.Control type="date" name='endDate' placeholder="" value={inputDataValues.endDate} onChange={(event) =>
-                            setInputDataValues((prev) => ({ ...prev, endDate: event.target.value }))
+                        <Form.Control type="date" name='WorkExpEndDate' placeholder="" value={inputDataValues.WorkExpEndDate} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, WorkExpEndDate: event.target.value }))
                         } />
                     </Form.Group>
 
@@ -490,10 +490,10 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>GitHub Links</Form.Label>
-                        <Form.Control type="text" name='github' placeholder="Enter your github repo link"
-                            value={inputDataValues.github}
+                        <Form.Control type="text" name='ProjectGithub' placeholder="Enter your github repo link"
+                            value={inputDataValues.ProjectGithub}
                             onChange={(event) =>
-                                setInputDataValues((prev) => ({ ...prev, github: event.target.value }))
+                                setInputDataValues((prev) => ({ ...prev, ProjectGithub: event.target.value }))
                             } />
                     </Form.Group>
 
@@ -624,7 +624,8 @@ function Editor(props) {
             },
         }));
 
-        setactiveAddOnDetailIndex((prev) => (prev === index ? 0 : prev - 1));
+        setactiveAddOnDetailIndex((prev) => (prev === index ? 0 : prev - 1)); 
+        
     };
 
     const generateSectionBody = () => {
@@ -680,8 +681,8 @@ function Editor(props) {
                     specialization: inputDataValues.specialization,
                     collegeName: inputDataValues.collegeName,
                     cgpa: inputDataValues.cgpa,
-                    startDate: inputDataValues.startDate,
-                    endDate: inputDataValues.endDate
+                    EdustartDate: inputDataValues.EdustartDate,
+                    EduEndDate: inputDataValues.EduEndDate
                 };
 
                 const tempDetails = [...resumeInformation[sections.education]?.details];
@@ -732,8 +733,8 @@ function Editor(props) {
                     companyName: inputDataValues.companyName,
                     state: inputDataValues.state,
                     country: inputDataValues.country,
-                    startDate: inputDataValues.startDate,
-                    endDate: inputDataValues.endDate,
+                    WorkExpStartDate: inputDataValues.WorkExpStartDate,
+                    WorkExpEndDate: inputDataValues.WorkExpEndDate,
                     workExpSum1: inputDataValues.workExpSum1,
                     workExpSum2: inputDataValues.workExpSum2,
                     workExpSum3: inputDataValues.workExpSum3,
@@ -757,7 +758,7 @@ function Editor(props) {
                 const tempDetail = {
                     projectName: inputDataValues.projectName,
                     projectDesp: inputDataValues.projectDesp,
-                    github: inputDataValues.github,
+                    ProjectGithub: inputDataValues.ProjectGithub,
                     preview: inputDataValues.preview
                 };
 
@@ -811,6 +812,7 @@ function Editor(props) {
             default:
                 break;
         }
+        console.log(resumeInformation)
 
     }
 
@@ -858,12 +860,12 @@ function Editor(props) {
                 ? activeInfo.details[0]?.cgpa || ""
                 : ""
             ,
-            startDate: activeInfo?.details
-                ? activeInfo.details[0]?.startDate || ""
+            EduStartDate: activeInfo?.details
+                ? activeInfo.details[0]?.EduStartDate || ""
                 : ""
             ,
-            endDate: activeInfo?.details
-                ? activeInfo.details[0]?.endDate || ""
+            EduEndDate: activeInfo?.details
+                ? activeInfo.details[0]?.EduEndDate || ""
                 : ""
             ,
             //Skills Achievements
@@ -892,6 +894,14 @@ function Editor(props) {
                 ? activeInfo.details[0]?.country || ""
                 : ""
             ,
+            WorkExpStartDate: activeInfo?.details
+                ? activeInfo.details[0]?.WorkExpStartDate || ""
+                : ""
+            ,
+            WorkExpEndDate: activeInfo?.details
+                ? activeInfo.details[0]?.WorkExpEndDate || ""
+                : ""
+            ,
             workExpSum1: activeInfo?.details
                 ? activeInfo.details[0]?.workExpSum1 || ""
                 : ""
@@ -911,6 +921,10 @@ function Editor(props) {
             ,
             projectDesp: activeInfo?.details
                 ? activeInfo.details[0]?.projectDesp || ""
+                : ""
+            ,
+            ProjectGithub: activeInfo?.details
+                ? activeInfo.details[0]?.ProjectGithub || ""
                 : ""
             ,
             preview: activeInfo?.details
@@ -939,7 +953,35 @@ function Editor(props) {
         setActiveInformation(resumeInformation[sections[activeSectionObjectKey]]);
     }, [resumeInformation]);
 
+    useEffect(() => {
+        const details = activeInformation?.details;
+        if (!details)
+            return;
 
+        const activeInfo = resumeInformation[sections[activeSectionObjectKey]];
+
+        setInputDataValues({
+            courseName: activeInfo.details[activeAddOnDetailIndex]?.courseName || "",
+            specialization: activeInfo.details[activeAddOnDetailIndex]?.specialization || "",
+            collegeName: activeInfo.details[activeAddOnDetailIndex]?.collegeName || "",
+            cgpa: activeInfo.details[activeAddOnDetailIndex]?.cgpa || "",
+            EduStartDate: activeInfo.details[activeAddOnDetailIndex]?.EduStartDate || "",
+            EduEndDate: activeInfo.details[activeAddOnDetailIndex]?.EduEndDate || "",
+            roleName: activeInfo.details[activeAddOnDetailIndex]?.roleName || "",
+            companyName: activeInfo.details[activeAddOnDetailIndex]?.companyName || "",
+            state: activeInfo.details[activeAddOnDetailIndex]?.state || "",
+            country: activeInfo.details[activeAddOnDetailIndex]?.country || "",
+            workExpSum1: activeInfo.details[activeAddOnDetailIndex]?.workExpSum1 || "",
+            workExpSum2: activeInfo.details[activeAddOnDetailIndex]?.workExpSum2 || "",
+            workExpSum3: activeInfo.details[activeAddOnDetailIndex]?.workExpSum3 || "",
+            projectName: activeInfo.details[activeAddOnDetailIndex]?.projectName || "",
+            projectDesp: activeInfo.details[activeAddOnDetailIndex]?.projectDesp || "",
+            github: activeInfo.details[activeAddOnDetailIndex]?.github || "",
+            preview: activeInfo.details[activeAddOnDetailIndex]?.preview || "",
+            positionName: activeInfo.details[activeAddOnDetailIndex]?.positionName || "",
+            responsibilities: activeInfo.details[activeAddOnDetailIndex]?.responsibilities || "",
+        });
+    }, [activeAddOnDetailIndex]);
 
 
     return (
@@ -967,6 +1009,8 @@ function Editor(props) {
             <div className={styles.contentBox}>
                 <div className={styles.addOns}>
                     {
+
+
                         activeInformation?.details
                             ?
                             activeInformation?.details?.map((item, index) => (
@@ -975,7 +1019,7 @@ function Editor(props) {
                                     <Button
                                         className={styles.addOns}
                                         key={item.title + index}
-
+                                        onClick={() => setactiveAddOnDetailIndex(index)}
                                         variant="primary"
                                     >
                                         {sections[activeSectionObjectKey]} {index + 1}
@@ -989,16 +1033,18 @@ function Editor(props) {
                                     <Button
                                         className={styles.addOns}
                                         key={item.title + index}
-
                                         variant="secondary"
+                                        onClick={() => setactiveAddOnDetailIndex(index)}
                                     >
-                                        {sections[activeSectionObjectKey]} {index + 1} 
-                                        <X size={16} 
-                                        className={styles.cross}
+                                        {sections[activeSectionObjectKey]} {index + 1}
+                                        <X size={16}
+                                            className={styles.cross}
+                                            onClick={() => { handleNewDelDetail(index) }}
                                         />
                                     </Button>
                             ))
                             : ""
+
                     }
                     {
                         activeInformation?.details && activeInformation?.details?.length > 0
