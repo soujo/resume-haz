@@ -37,7 +37,7 @@ function Body() {
     [sections.achievements]: {
       id: sections.achievements,
       sectionTitle: sections.achievements,
-      points: [],
+      points: ["",""],
     },
     [sections.workExp]: {
       id: sections.workExp,
