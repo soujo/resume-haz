@@ -41,3 +41,10 @@
     padding: 10px;
     background-color:  rgb(238, 252, 255);
 }
+
+.resumeBox{
+    width: 90%;
+    min-height: 900px;
+    padding: 10px;
+    border: 1px solid black;
+}
