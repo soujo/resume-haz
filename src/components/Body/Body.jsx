@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from "./Body.module.css"
 import Editor from "../Editor/Editor";
+import Resume from '../Resume/Resume';
 import Button from 'react-bootstrap/Button';
 import { Download } from 'react-feather';
 
@@ -79,8 +80,8 @@ function Body() {
           setResumeInformation={setResumeInformation}
         />
       </div>
-      <div className={styles.ResumeBox}>
-
+      <div className={styles.resumeBox}>
+          <Resume/>
       </div>
     </div>
   )
