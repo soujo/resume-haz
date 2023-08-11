@@ -14,7 +14,9 @@ function Header() {
                     Craft Your Career Journey for free !
                 </p>
                 <div className={styles.heroSectionCTA}>
-                    <Button variant="primary">Get Started</Button>
+                    <a href="#editor">
+                        <Button variant="primary">Get Started</Button>
+                    </a>
                 </div>
             </div>
             <div className={styles.imgContainer}>
