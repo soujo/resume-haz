@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import styles from './Resume.module.css'
 import { Disc } from 'react-feather'
 
-const Resume = (props) => {
+const Resume = forwardRef((props, ref) => {
 
     const { sections, resumeInformation } = props;
 
@@ -203,7 +203,7 @@ const Resume = (props) => {
                                                         <div className={styles.date}>
                                                             {
 
-                                                                `${getFormattedDate(item.eduStartDate)} - ${getFormattedDate(item.eduEndDate)}`
+                                                                `( ${getFormattedDate(item.eduStartDate)} - ${getFormattedDate(item.eduEndDate)} )`
                                                             }
 
                                                         </div>
@@ -212,7 +212,7 @@ const Resume = (props) => {
                                                     (
                                                         <div className={styles.date}>
                                                             {
-                                                                `${getFormattedDate(item.eduStartDate)} - Present `
+                                                                `( ${getFormattedDate(item.eduStartDate)} - Present )`
                                                             }
 
                                                         </div>
@@ -437,9 +437,16 @@ const Resume = (props) => {
                                 <div className={styles.projectText}>
                                     {item.projectDesp}
                                     &nbsp;
-                                    <a href={`${item.ProjectGithub}`}>(GitHub)</a>
-                                    &nbsp;
-                                    <a href={`${item.preview}`}>(Preview)</a>
+                                    {
+                                        info?.projects?.details?.projectGithub == ""
+                                            ? <></>
+                                            : <a href={`${item.projectGithub}`}>(GitHub)</a>
+                                    }
+                                    {
+                                        info?.projects?.details?.preview == ""
+                                            ? <></>
+                                            : <a href={`${item.preview}`}>(Preview)</a>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -509,10 +516,10 @@ const Resume = (props) => {
 
 
     return (
-        <div className={styles.container}>
+        <div ref={ref} className={styles.container}>
             {columns[0].map((item) => sectionDiv[item])}
         </div>
     )
-}
+})
 
 export default Resume
