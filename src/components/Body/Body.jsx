@@ -38,7 +38,7 @@ function Body() {
     [sections.achievements]: {
       id: sections.achievements,
       sectionTitle: sections.achievements,
-      points: ["",""],
+      points: [],
     },
     [sections.workExp]: {
       id: sections.workExp,
@@ -81,7 +81,10 @@ function Body() {
         />
       </div>
       <div className={styles.resumeBox}>
-          <Resume/>
+        <Resume
+          sections={sections}
+          resumeInformation={resumeInformation}
+        />
       </div>
     </div>
   )
