@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import ReactToPrint from "react-to-print";
 import styles from "./Body.module.css"
 import Editor from "../Editor/Editor";
 import Resume from '../Resume/Resume';
 import Button from 'react-bootstrap/Button';
 import { Download } from 'react-feather';
-
+import { GitHub } from 'react-feather';
+import { Linkedin } from 'react-feather';
+import { Home } from 'react-feather';
+import { Mail } from 'react-feather';
 
 function Body() {
 
@@ -62,30 +66,59 @@ function Body() {
     },
   });
 
+  const resumeRef = useRef()
 
   return (
     <div className={styles.bodySection}>
       <div className={styles.bodyHeader}>
         <div className={styles.textContent}>
-          Get started on your journey to success with our intuitive resume builder. Fill in your information, customize your resume, and hit download to unlock new career possibilities. Your future awaits!"
-        </div>
-        <div className={styles.dwldButton}>
-          <Button variant="primary">Download <Download className={styles.dwldIcon} size={18} /> </Button>{' '}
+          Embark on a journey towards your professional aspirations with our revolutionary Resume Builder. Seamlessly translate your experiences into a compelling narrative as you navigate through our user-friendly interface. Watch your resume come to life in real-time, giving you the opportunity to fine-tune every detail until it perfectly aligns with your vision. Step confidently into the job market, armed with an ATS-friendly resume ready to open doors and unlock new opportunities.
         </div>
       </div>
-      <div className={styles.editorBox}>
+      <div className={styles.editorBox} id='editor'>
         <Editor
           sections={sections}
           resumeInformation={resumeInformation}
           setResumeInformation={setResumeInformation}
         />
       </div>
+      <div className={styles.resumeHeader}>
+        <div className={styles.resumeContent}>
+          Finalized your resume? With a single click, make it yours – download and own your ATS-friendly masterpiece, primed to make an impact.
+        </div>
+        <div className={styles.dwldButton}>
+          <ReactToPrint
+            trigger={() => {
+              return (
+                <Button variant="primary">Download <Download className={styles.dwldIcon} size={18} /> </Button>
+              );
+            }}
+            content={() => resumeRef.current}
+          />
+        </div>
+      </div>
       <div className={styles.resumeBox}>
         <Resume
+          ref={resumeRef}
           sections={sections}
           resumeInformation={resumeInformation}
         />
       </div>
+      <footer>
+        Made with ❤ by &nbsp; <b>Soujanya Hazra</b> &nbsp;
+        <a href="https://github.com/soujo">
+          <GitHub />
+        </a>
+        <a href="https://www.linkedin.com/in/soujanyahazra/">
+          <Linkedin />
+        </a>
+        <a href="https://soujanyahazra.tech/">
+          <Home />
+        </a>
+        <a href="mailto:hazrasoujanya@gmail.com">
+          <Mail />
+        </a>
+      </footer>
     </div>
   )
 }

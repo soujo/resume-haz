@@ -1,12 +1,12 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 
 }
 
-.bodySection{
-    padding: 30px;
+.bodySection {
+    padding: 0 30px;
     text-align: center;
     width: 100vw;
     display: flex;
@@ -14,37 +14,87 @@
     align-items: center;
     justify-content: space-evenly;
     gap: 30px;
-    padding-top: 0;
 }
 
-.bodyHeader{
+.bodyHeader {
     padding: 30px 0;
     width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.textContent {
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    margin-left: 3rem;
+}
+
+.dwldIcon {
+    padding-bottom: 2px;
+}
+
+.editorBox {
+    width: 90%;
+    min-height: 450px;
+    padding: 10px;
+    background-color: rgb(238, 252, 255);
+}
+
+.resumeBox {
+    width: 90%;
+    min-height: max-content;
+    padding: 10px;
+    border: 1px solid #dfdfdf;
+}
+
+.resumeHeader {
+    padding: 20px 0;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.textContent{
+.resumeContent {
     padding: 10px;
     text-align: left;
-    width: 70%;
+    width: 75%;
 }
 
-.dwldIcon{
+.dwldIcon {
     padding-bottom: 2px;
 }
 
-.editorBox{
-    width: 90%;
-    min-height: 450px;
-    padding: 10px;
-    background-color:  rgb(238, 252, 255);
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-.resumeBox{
-    width: 90%;
-    min-height: 900px;
-    padding: 10px;
-    border: 1px solid black;
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3b87f8;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4769ff;
+}
+
+footer{
+    width: 100vw;
+    background-color: rgb(238, 252, 255);
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+    font-weight: 400;
+    padding: 0 6px;
 }
