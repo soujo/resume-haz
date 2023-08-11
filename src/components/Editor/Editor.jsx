@@ -204,10 +204,10 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Course Starting Date</Form.Label>
-                        <Form.Control type="date" name='EduStartDate' placeholder=""
-                            value={inputDataValues.EduStartDate}
+                        <Form.Control type="date" name='eduStartDate' placeholder=""
+                            value={inputDataValues.eduStartDate}
                             onChange={(event) =>
-                                setInputDataValues((prev) => ({ ...prev, EduStartDate: event.target.value }))
+                                setInputDataValues((prev) => ({ ...prev, eduStartDate: event.target.value }))
                             } />
                     </Form.Group>
 
@@ -215,10 +215,10 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Course Ending Date</Form.Label>
-                        <Form.Control type="date" name='EduEndDate' placeholder=""
-                            value={inputDataValues.EduEndDate}
+                        <Form.Control type="date" name='eduEndDate' placeholder=""
+                            value={inputDataValues.eduEndDate}
                             onChange={(event) =>
-                                setInputDataValues((prev) => ({ ...prev, EduEndDate: event.target.value }))
+                                setInputDataValues((prev) => ({ ...prev, eduEndDate: event.target.value }))
                             } />
                     </Form.Group>
 
@@ -681,8 +681,8 @@ function Editor(props) {
                     specialization: inputDataValues.specialization,
                     collegeName: inputDataValues.collegeName,
                     cgpa: inputDataValues.cgpa,
-                    EdustartDate: inputDataValues.EdustartDate,
-                    EduEndDate: inputDataValues.EduEndDate
+                    eduStartDate: inputDataValues.eduStartDate,
+                    eduEndDate: inputDataValues.eduEndDate
                 };
 
                 const tempDetails = [...resumeInformation[sections.education]?.details];
@@ -860,12 +860,12 @@ function Editor(props) {
                 ? activeInfo.details[0]?.cgpa || ""
                 : ""
             ,
-            EduStartDate: activeInfo?.details
-                ? activeInfo.details[0]?.EduStartDate || ""
+            eduStartDate: activeInfo?.details
+                ? activeInfo.details[0]?.eduStartDate || ""
                 : ""
             ,
-            EduEndDate: activeInfo?.details
-                ? activeInfo.details[0]?.EduEndDate || ""
+            eduEndDate: activeInfo?.details
+                ? activeInfo.details[0]?.eduEndDate || ""
                 : ""
             ,
             //Skills Achievements
@@ -965,8 +965,8 @@ function Editor(props) {
             specialization: activeInfo.details[activeAddOnDetailIndex]?.specialization || "",
             collegeName: activeInfo.details[activeAddOnDetailIndex]?.collegeName || "",
             cgpa: activeInfo.details[activeAddOnDetailIndex]?.cgpa || "",
-            EduStartDate: activeInfo.details[activeAddOnDetailIndex]?.EduStartDate || "",
-            EduEndDate: activeInfo.details[activeAddOnDetailIndex]?.EduEndDate || "",
+            eduStartDate: activeInfo.details[activeAddOnDetailIndex]?.eduStartDate || "",
+            eduEndDate: activeInfo.details[activeAddOnDetailIndex]?.eduEndDate || "",
             roleName: activeInfo.details[activeAddOnDetailIndex]?.roleName || "",
             companyName: activeInfo.details[activeAddOnDetailIndex]?.companyName || "",
             state: activeInfo.details[activeAddOnDetailIndex]?.state || "",
