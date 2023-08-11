@@ -24,7 +24,10 @@
 }
 
 .phoneCity,
-.basicInfoLinks {
+.basicInfoLinks,
+.cgpaDate,
+.skillsBox,
+.projectContent {
     display: flex;
 }
 
@@ -52,6 +55,7 @@ a:visited {
 .educationSection,
 .skillsSection,
 .achievementsSection,
+.workExpSection,
 .projectSection,
 .porSection,
 .othersSection {
@@ -78,7 +82,9 @@ a:visited {
     margin-top: 8px;
 }
 
-.box {
+.box,
+.roleDate,
+.companyLocation {
     display: flex;
     justify-content: space-between;
 }
@@ -89,12 +95,8 @@ a:visited {
     font-size: 1.05em;
 }
 
-.cgpaDate {
-    display: flex;
-}
-
-.skillsBox {
-    display: flex;
+.specialization{
+    font-size: 0.9em;
 }
 
 .skillsHeader {
@@ -103,10 +105,12 @@ a:visited {
 }
 
 .projectHeader,
-.porHeader {
+.porHeader,
+.role {
     font-weight: 500;
 }
 
-.projectContent {
+.workExpBox {
     display: flex;
+    flex-direction: column;
 }
