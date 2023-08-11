@@ -490,10 +490,10 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>GitHub Links</Form.Label>
-                        <Form.Control type="text" name='ProjectGithub' placeholder="Enter your github repo link"
-                            value={inputDataValues.ProjectGithub}
+                        <Form.Control type="text" name='projectGithub' placeholder="Enter your github repo link"
+                            value={inputDataValues.projectGithub}
                             onChange={(event) =>
-                                setInputDataValues((prev) => ({ ...prev, ProjectGithub: event.target.value }))
+                                setInputDataValues((prev) => ({ ...prev, projectGithub: event.target.value }))
                             } />
                     </Form.Group>
 
@@ -758,7 +758,7 @@ function Editor(props) {
                 const tempDetail = {
                     projectName: inputDataValues.projectName,
                     projectDesp: inputDataValues.projectDesp,
-                    ProjectGithub: inputDataValues.ProjectGithub,
+                    projectGithub: inputDataValues.projectGithub,
                     preview: inputDataValues.preview
                 };
 
@@ -923,8 +923,8 @@ function Editor(props) {
                 ? activeInfo.details[0]?.projectDesp || ""
                 : ""
             ,
-            ProjectGithub: activeInfo?.details
-                ? activeInfo.details[0]?.ProjectGithub || ""
+            projectGithub: activeInfo?.details
+                ? activeInfo.details[0]?.projectGithub || ""
                 : ""
             ,
             preview: activeInfo?.details
