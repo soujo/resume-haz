@@ -166,8 +166,8 @@ const Resume = (props) => {
             <div key={"education"} className={styles.educationSection}>
                 {
                     info?.education?.details.length > 0
-                    ?<div className={styles.header}>EDUCATION</div>
-                    : <></>
+                        ? <div className={styles.header}>EDUCATION</div>
+                        : <></>
 
                 }
                 {info.education?.details?.map((item) => (
@@ -323,70 +323,168 @@ const Resume = (props) => {
         ),
         [sections.workExp]: (
             <div key={"workExp"} className={styles.workExpSection}>
-                <div className={styles.header}>EXPERIENCE</div>
+                {
+                    info?.workExp?.details.length > 0
+                        ? <div className={styles.header}>EXPERIENCE</div>
+                        : <></>
+
+                }
                 <div className={styles.sectionContent}>
-                    <div className={styles.workExpBox}>
-                        <div className={styles.roleDate}>
-                            <div className={styles.role}>Role</div>
-                            <div className={styles.date}>(July’20 - June’24)</div>
-                        </div>
-                        <div className={styles.companyLocation}>
-                            <div className={styles.company}>
-                                Company
+                    {info.workExp?.details?.map((item) => (
+                        <>
+                            <div className={styles.workExpBox}>
+                                <div className={styles.roleDate}>
+                                    {
+                                        item.roleName
+                                            ?
+                                            <div className={styles.role}>{item.roleName}</div>
+                                            :
+                                            <></>
+
+                                    }
+                                    {
+                                        item.workExpStartDate
+                                            ?
+                                            (
+                                                item.workExpEndDate
+                                                    ?
+                                                    (
+                                                        <div className={styles.date}>
+                                                            {
+
+                                                                `${getFormattedDate(item.workExpStartDate)} - ${getFormattedDate(item.workExpEndDate)}`
+                                                            }
+
+                                                        </div>
+                                                    )
+                                                    :
+                                                    (
+                                                        <div className={styles.date}>
+                                                            {
+                                                                `${getFormattedDate(item.workExpStartDate)} - Present `
+                                                            }
+
+                                                        </div>
+                                                    )
+
+
+                                            )
+                                            : <></>
+                                    }
+                                </div>
+                                <div className={styles.companyLocation}>
+                                    {
+                                        item.companyName
+                                            ?
+                                            <div className={styles.company}>{item.companyName}</div>
+                                            :
+                                            <></>
+
+                                    }
+                                    {
+                                        item.state && item.country
+                                            ?
+                                            <div className={styles.location}>{`${item.state}, ${item.country}`}</div>
+                                            :
+                                            <></>
+
+                                    }
+                                </div>
                             </div>
-                            <div className={styles.location}>
-                                City
+                            <div className={styles.workExpSummary}>
+                                <ul>
+                                    {
+                                        item.workExpSum1
+                                            ?
+                                            <li>{item.workExpSum1}</li>
+                                            :
+                                            <></>
+                                    }
+                                    {
+                                        item.workExpSum2
+                                            ?
+                                            <li>{item.workExpSum2}</li>
+                                            :
+                                            <></>
+                                    }
+                                    {
+                                        item.workExpSum3
+                                            ?
+                                            <li>{item.workExpSum3}</li>
+                                            :
+                                            <></>
+                                    }
+                                </ul>
                             </div>
-                        </div>
-                    </div>
-                    <div className={styles.workExpSummary}>
-                        <ul>
-                            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum, provident?</li>
-                            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum, provident?</li>
-                            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum, provident?</li>
-                        </ul>
-                    </div>
+                        </>
+                    ))}
                 </div>
             </div>
         ),
-        [sections.project]: (
-            <div key={"project"} className={styles.projectSection}>
-                <div className={styles.header}>PROJECTS</div>
+        [sections.projects]: (
+            <div key={"projects"} className={styles.projectSection}>
+                {
+                    info?.projects?.details.length > 0
+                        ? <div className={styles.header}>PROJECTS</div>
+                        : <></>
+
+                }
                 <div className={styles.sectionContent}>
-                    <div className={styles.project}>
-                        <div className={styles.projectHeader}>XYZ</div>
-                        <div className={styles.projectContent}>
-                            <div className={styles.projectText}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum soluta ratione fugit quae tempora cum minus quibusdam et rem exercitationem?fsdfsdfsdffdsfdsfdsf
-                                &nbsp;
-                                <a href="">(GitHub)</a>
-                                &nbsp;
-                                <a href="">(Preview)</a>
+                    {info.projects?.details?.map((item) => (
+                        <div className={styles.project}>
+                            <div className={styles.projectHeader}>{item.projectName}</div>
+                            <div className={styles.projectContent}>
+                                <div className={styles.projectText}>
+                                    {item.projectDesp}
+                                    &nbsp;
+                                    <a href={`${item.ProjectGithub}`}>(GitHub)</a>
+                                    &nbsp;
+                                    <a href={`${item.preview}`}>(Preview)</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                    ))}
                 </div>
             </div>
         ),
         [sections.POR]: (
             <div key={"por"} className={styles.porSection}>
-                <div className={styles.header}>POSITION OF RESPONSIBILITY</div>
+                {
+                    info?.POR?.details.length > 0
+                        ? <div className={styles.header}>POSITION OF RESPONSIBILITY</div>
+                        : <></>
+
+                }
                 <div className={styles.sectionContent}>
-                    <div className={styles.por}>
-                        <div className={styles.porHeader}>Admin at ABC</div>
-                        <div className={styles.porContent}>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque, mollitia eum. Cum voluptas ab mollitia saepe sequi, similique quo distinctio.
+                    {info.POR?.details?.map((item) => (
+
+                        <div className={styles.por}>
+                            <div className={styles.porHeader}>{item.positionName}</div>
+                            <div className={styles.porContent}>
+                                {item.responsibilities}
+                            </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         ),
         [sections.others]: (
             <div key={"others"} className={styles.othersSection}>
-                <div className={styles.header}>INTEREST AND HOBBIES</div>
+                {
+                    info?.others?.detail == ""
+                        ? <></>
+                        : <div className={styles.header}>INTEREST AND HOBBIES</div>
+
+                }
                 <div className={styles.sectionContent}>
                     <ul>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, officiis!</li>
+                        {
+                            info?.others?.detail == ""
+                                ? <></>
+                                : <li>{info?.others?.detail}</li>
+
+                        }
                     </ul>
                 </div>
             </div>
