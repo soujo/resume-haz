@@ -391,8 +391,8 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Joining Date</Form.Label>
-                        <Form.Control type="date" name='WorkExpStartDate' placeholder="" value={inputDataValues.WorkExpStartDate} onChange={(event) =>
-                            setInputDataValues((prev) => ({ ...prev, WorkExpStartDate: event.target.value }))
+                        <Form.Control type="date" name='workExpStartDate' placeholder="" value={inputDataValues.workExpStartDate} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, workExpStartDate: event.target.value }))
                         } />
                     </Form.Group>
 
@@ -400,8 +400,8 @@ function Editor(props) {
                 <div className={styles.colDiv}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Termination Date</Form.Label>
-                        <Form.Control type="date" name='WorkExpEndDate' placeholder="" value={inputDataValues.WorkExpEndDate} onChange={(event) =>
-                            setInputDataValues((prev) => ({ ...prev, WorkExpEndDate: event.target.value }))
+                        <Form.Control type="date" name='workExpEndDate' placeholder="" value={inputDataValues.workExpEndDate} onChange={(event) =>
+                            setInputDataValues((prev) => ({ ...prev, workExpEndDate: event.target.value }))
                         } />
                     </Form.Group>
 
@@ -733,8 +733,8 @@ function Editor(props) {
                     companyName: inputDataValues.companyName,
                     state: inputDataValues.state,
                     country: inputDataValues.country,
-                    WorkExpStartDate: inputDataValues.WorkExpStartDate,
-                    WorkExpEndDate: inputDataValues.WorkExpEndDate,
+                    workExpStartDate: inputDataValues.workExpStartDate,
+                    workExpEndDate: inputDataValues.workExpEndDate,
                     workExpSum1: inputDataValues.workExpSum1,
                     workExpSum2: inputDataValues.workExpSum2,
                     workExpSum3: inputDataValues.workExpSum3,
@@ -894,12 +894,12 @@ function Editor(props) {
                 ? activeInfo.details[0]?.country || ""
                 : ""
             ,
-            WorkExpStartDate: activeInfo?.details
-                ? activeInfo.details[0]?.WorkExpStartDate || ""
+            workExpStartDate: activeInfo?.details
+                ? activeInfo.details[0]?.workExpStartDate || ""
                 : ""
             ,
-            WorkExpEndDate: activeInfo?.details
-                ? activeInfo.details[0]?.WorkExpEndDate || ""
+            workExpEndDate: activeInfo?.details
+                ? activeInfo.details[0]?.workExpEndDate || ""
                 : ""
             ,
             workExpSum1: activeInfo?.details
