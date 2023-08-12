@@ -38,6 +38,7 @@ function Editor(props) {
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
                     <Form.Control type="text" name='title' placeholder=""
+                        disabled
                         value={sectionTitle}
                         onChange={(event) => setSectionTitle(event.target.value)} />
                 </Form.Group>
@@ -147,6 +148,7 @@ function Editor(props) {
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
                     <Form.Control type="text" name='title' placeholder=""
+                        disabled
                         value={sectionTitle}
                         onChange={(event) => setSectionTitle(event.target.value)} />
                 </Form.Group>
@@ -233,6 +235,7 @@ function Editor(props) {
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
                     <Form.Control type="text" name='title' placeholder=""
+                        disabled
                         value={sectionTitle}
                         onChange={(event) => setSectionTitle(event.target.value)}
                     />
@@ -271,6 +274,7 @@ function Editor(props) {
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
                     <Form.Control type="text" name='title' placeholder=""
+                        disabled
                         value={sectionTitle}
                         onChange={(event) => setSectionTitle(event.target.value)} />
                 </Form.Group>
@@ -342,7 +346,7 @@ function Editor(props) {
             <div>
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" name='title' placeholder="" value={sectionTitle}
+                    <Form.Control type="text" name='title' disabled placeholder="" value={sectionTitle}
                         onChange={(event) => setSectionTitle(event.target.value)} />
                 </Form.Group>
             </div>
@@ -459,6 +463,7 @@ function Editor(props) {
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
                     <Form.Control type="text" name='title' placeholder=""
+                        disabled
                         value={sectionTitle}
                         onChange={(event) => setSectionTitle(event.target.value)} />
                 </Form.Group>
@@ -518,7 +523,8 @@ function Editor(props) {
             <div>
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" name='title' placeholder="" value={sectionTitle}
+                    <Form.Control type="text" name='title' placeholder=""
+                        value={sectionTitle} disabled
                         onChange={(event) => setSectionTitle(event.target.value)} />
                 </Form.Group>
             </div>
@@ -556,6 +562,7 @@ function Editor(props) {
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Title</Form.Label>
                     <Form.Control type="text" name='title' placeholder=""
+                        disabled
                         value={sectionTitle}
                         onChange={(event) => setSectionTitle(event.target.value)} />
                 </Form.Group>
@@ -624,8 +631,8 @@ function Editor(props) {
             },
         }));
 
-        setactiveAddOnDetailIndex((prev) => (prev === index ? 0 : prev - 1)); 
-        
+        setactiveAddOnDetailIndex((prev) => (prev === index ? 0 : prev - 1));
+
     };
 
     const generateSectionBody = () => {
